@@ -1,1 +1,97 @@
-body{font-family:sans-serif;}
+body {
+    margin: 0;
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+#introSection {
+    position: relative;
+    height: 90vh;
+}
+
+#introCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#enterBtn {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 28px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+}
+
+#catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.sold {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+#modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalContent {
+    background: #222;
+    padding: 20px;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 10px;
+    position: relative;
+}
+
+#closeModal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+}

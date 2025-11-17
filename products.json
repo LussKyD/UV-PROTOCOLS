@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": "sunglass1",
+        "name": "Aviator Ultra",
+        "image": "assets/aviator.jpg",
+        "model": "models/aviator.glb",
+        "price": 75,
+        "available": true
+    },
+    {
+        "id": "sunglass2",
+        "name": "Carbon Edge",
+        "image": "assets/carbon.jpg",
+        "model": "models/carbon.glb",
+        "price": 120,
+        "available": false
+    }
+]

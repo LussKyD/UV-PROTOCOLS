@@ -1,124 +1,82 @@
-// ---------- INTRO 3D ANIMATION ----------
-let introRenderer, introScene, introCamera, introFrame = 0;
+// Wait until everything is loaded
+window.addEventListener("load", () => {
+    console.log("App loaded.");
 
-function startIntro() {
+    // --- GLOBALS ---
+    let scene, camera, renderer, cube, animating = true;
+
     const canvas = document.getElementById("introCanvas");
-    introRenderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    introRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    introScene = new THREE.Scene();
+    const enterBtn = document.getElementById("enterBtn");
+    const catalog = document.getElementById("catalog");
+    const introSection = document.getElementById("introSection");
 
-    introCamera = new THREE.PerspectiveCamera(
-        60,
-        canvas.clientWidth / canvas.clientHeight,
-        0.1,
-        100
-    );
-    introCamera.position.set(0, 0, 5);
+    startIntro();
 
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2, 2, 5);
-    introScene.add(light);
 
-    const loader = new THREE.GLTFLoader();
-    loader.load("models/introSunglasses.glb", gltf => {
-        const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        introScene.add(model);
+    // ---------- INTRO 3D ANIMATION ----------
+    function startIntro() {
+        if (typeof THREE === "undefined") {
+            console.error("THREE.js NOT FOUND — check three.min.js path!");
+            return;
+        }
 
-        animateIntro();
-    });
-}
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 3;
 
-function animateIntro() {
-    introFrame++;
-    introCamera.position.z = 5 - (introFrame * 0.02);
-    introRenderer.render(introScene, introCamera);
+        renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-    if (introCamera.position.z > 1.2) {
-        requestAnimationFrame(animateIntro);
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+        cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        const light = new THREE.PointLight(0xffffff, 1);
+        light.position.set(3, 3, 3);
+        scene.add(light);
+
+        animate();
     }
-}
 
-document.getElementById("enterBtn").onclick = () => {
-    document.getElementById("introSection").style.display = "none";
-};
+    function animate() {
+        if (!animating) return;
 
-// ---------------- CATALOG ----------------
+        requestAnimationFrame(animate);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
 
-async function loadProducts() {
-    const res = await fetch("products.json");
-    const items = await res.json();
 
-    const container = document.getElementById("catalog");
-    container.innerHTML = "";
+    // ---------- ENTER BUTTON ----------
+    enterBtn.addEventListener("click", () => {
+        animating = false; // stop animation
+        introSection.style.opacity = "0";
 
-    items.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
+        setTimeout(() => {
+            introSection.classList.add("hidden");
+            catalog.classList.remove("hidden");
+        }, 600);
 
-        card.innerHTML = `
-            ${!item.available ? "<div class='sold'>SOLD</div>" : ""}
-            <img src="${item.image}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <p>$${item.price}</p>
-        `;
-
-        card.onclick = () => openProduct(item);
-        container.appendChild(card);
+        loadProducts();
     });
-}
 
-// -------------- PRODUCT MODAL + VIEWER -------------
 
-let viewerRenderer, viewerScene, viewerCamera, viewerControls;
+    // ---------- CATALOG DATA ----------
+    function loadProducts() {
+        const items = [
+            { name: "VX-01 Glasses", price: "$79", img: "p1.png" },
+            { name: "VX-02 Edge", price: "$92", img: "p2.png" },
+            { name: "VX-03 Phantom", price: "$69", img: "p3.png" }
+        ];
 
-function openProduct(product) {
-    document.getElementById("modal").classList.remove("hidden");
-    document.getElementById("productInfo").innerHTML = `
-        <h2>${product.name}</h2>
-        <p>$${product.price}</p>
-        <p>Status: ${product.available ? "Available" : "Sold Out"}</p>
-        <a href="mailto:orders@uvprotocols.com?subject=Reserve: ${product.name}">
-            <button ${product.available ? "" : "disabled"}>Reserve</button>
-        </a>
-    `;
-
-    const canvas = document.getElementById("viewerCanvas");
-
-    viewerRenderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    viewerRenderer.setSize(600, 350);
-
-    viewerScene = new THREE.Scene();
-    viewerCamera = new THREE.PerspectiveCamera(60, 600/350, 0.1, 100);
-    viewerCamera.position.set(0, 0, 2);
-
-    viewerControls = new THREE.OrbitControls(viewerCamera, canvas);
-
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2,2,5);
-    viewerScene.add(light);
-
-    const loader = new THREE.GLTFLoader();
-    loader.load(product.model, gltf => {
-        const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        viewerScene.add(model);
-        renderViewer();
-    }, undefined, () => {
-        document.getElementById("viewerContainer").innerHTML =
-            `<img src="${product.image}" style="width:100%;border-radius:8px;">`;
-    });
-}
-
-function renderViewer() {
-    viewerRenderer.render(viewerScene, viewerCamera);
-    requestAnimationFrame(renderViewer);
-}
-
-document.getElementById("closeModal").onclick = () => {
-    document.getElementById("modal").classList.add("hidden");
-};
-
-// ---------- INIT ----------
-startIntro();
-loadProducts();
+        catalog.innerHTML = items.map(p => `
+            <div class="card">
+                <img src="${p.img}" alt="" />
+                <h3>${p.name}</h3>
+                <p>${p.price}</p>
+            </div>
+        `).join("");
+    }
+});

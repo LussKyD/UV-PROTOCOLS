@@ -1,26 +1,29 @@
 [
   {
-    "id": "vx1",
-    "title": "VX-01 Glasses",
-    "price": 7900,
+    "id": "prod1",
+    "title": "Sunglasses 1",
+    "price": 6800,
     "image": "img/p1.png",
+    "model": "",
     "oneOfAKind": true,
     "sold": false
   },
   {
-    "id": "vx2",
-    "title": "VX-02 Edge",
-    "price": 9200,
+    "id": "prod2",
+    "title": "Sunglasses 2",
+    "price": 7100,
     "image": "img/p2.png",
+    "model": "",
     "oneOfAKind": true,
     "sold": false
   },
   {
-    "id": "vx3",
-    "title": "VX-03 Phantom",
-    "price": 6900,
+    "id": "prod3",
+    "title": "Sunglasses 3",
+    "price": 7400,
     "image": "img/p3.png",
+    "model": "",
     "oneOfAKind": true,
-    "sold": true
+    "sold": false
   }
 ]

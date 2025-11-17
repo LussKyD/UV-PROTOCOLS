@@ -1,1 +1,11 @@
-UV Protocols UVP v0.2\nRotating 3D-looking UVP logo (CSS 3D + JS) and product grid.\nDeploy to GitHub Pages, preserve structure.\n
+UVP v0.3 - Integrated .glb models into product viewer. Deploy to GitHub Pages.
+
+Structure:
+- index.html
+- css/
+- js/
+- models/ (from uploads)
+- img/
+- products.json
+
+Edit products.json to change sold state or model path.

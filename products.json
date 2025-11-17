@@ -1,20 +1,22 @@
 [
   {
-    "id":"sunglass-001",
-    "title":"Retro Aviator — Matte Gold",
-    "description":"Sample image fallback.",
-    "price":"120",
-    "available":true,
-    "model":"assets/models/aviator.glb",
-    "image":"assets/images/aviator.png"
+    "id": "sunglass-001",
+    "title": "Retro Aviator \u2014 Matte Gold",
+    "description": "One-of-a-kind aviator. Interactive 3D model built in-browser.",
+    "price": "120",
+    "available": true,
+    "image": "assets/images/aviator.png",
+    "model_type": "procedural",
+    "variant": "aviator"
   },
   {
-    "id":"sunglass-002",
-    "title":"Oversized Square — Black",
-    "description":"Sample image fallback.",
-    "price":"95",
-    "available":false,
-    "model":"assets/models/square.glb",
-    "image":"assets/images/square.png"
+    "id": "sunglass-002",
+    "title": "Oversized Square \u2014 Black",
+    "description": "Limited square frames. Interactive 3D model built in-browser.",
+    "price": "95",
+    "available": false,
+    "image": "assets/images/square.png",
+    "model_type": "procedural",
+    "variant": "square"
   }
 ]

@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id":"sunglass-001",
+    "title":"Retro Aviator — Matte Gold",
+    "description":"Sample image fallback.",
+    "price":"120",
+    "available":true,
+    "model":"assets/models/aviator.glb",
+    "image":"assets/images/aviator.png"
+  },
+  {
+    "id":"sunglass-002",
+    "title":"Oversized Square — Black",
+    "description":"Sample image fallback.",
+    "price":"95",
+    "available":false,
+    "model":"assets/models/square.glb",
+    "image":"assets/images/square.png"
+  }
+]

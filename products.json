@@ -1,18 +1,26 @@
 [
-    {
-        "id": "sunglass1",
-        "name": "Aviator Ultra",
-        "image": "assets/aviator.jpg",
-        "model": "models/aviator.glb",
-        "price": 75,
-        "available": true
-    },
-    {
-        "id": "sunglass2",
-        "name": "Carbon Edge",
-        "image": "assets/carbon.jpg",
-        "model": "models/carbon.glb",
-        "price": 120,
-        "available": false
-    }
+  {
+    "id": "vx1",
+    "title": "VX-01 Glasses",
+    "price": 7900,
+    "image": "img/p1.png",
+    "oneOfAKind": true,
+    "sold": false
+  },
+  {
+    "id": "vx2",
+    "title": "VX-02 Edge",
+    "price": 9200,
+    "image": "img/p2.png",
+    "oneOfAKind": true,
+    "sold": false
+  },
+  {
+    "id": "vx3",
+    "title": "VX-03 Phantom",
+    "price": 6900,
+    "image": "img/p3.png",
+    "oneOfAKind": true,
+    "sold": true
+  }
 ]

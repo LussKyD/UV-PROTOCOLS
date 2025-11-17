@@ -16,9 +16,13 @@ window.addEventListener("load", () => {
     // ---------- INTRO 3D ANIMATION ----------
     function startIntro() {
         if (typeof THREE === "undefined") {
-            console.error("THREE.js NOT FOUND — check three.min.js path!");
-            return;
-        }
+    console.warn("THREE.js failed to load — skipping intro animation.");
+    introSection.classList.add("hidden");
+    catalog.classList.remove("hidden");
+    loadProducts();
+    return;
+}
+
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);

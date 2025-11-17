@@ -1,33 +1,17 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
 <title>UV Protocols — 3D Sunglasses</title>
-<link rel="stylesheet" href="css/styles.css"/>
-<script src="https://unpkg.com/three@0.162.0/build/three.min.js"></script>
-<script src="https://unpkg.com/three@0.162.0/examples/js/controls/OrbitControls.js"></script>
+<link rel="stylesheet" href="css/styles.css">
+<!-- Load THREE.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
-<header>
-  <h1>UV Protocols — 3D Sunglasses</h1>
-  <p class="tag">One-of-a-kind eyewear — when sold it's gone until restocked.</p>
-</header>
-
-<section id="hero">
-  <canvas id="introCanvas"></canvas>
-  <button id="skipIntro" class="skip">Skip intro</button>
-</section>
-
-<main id="catalog"></main>
-
-<dialog id="viewerDialog">
-  <button id="closeViewer">Close</button>
-  <div id="viewer"></div>
-  <div id="productInfo"></div>
-</dialog>
-
+<h1>UV Protocols — 3D Sunglasses</h1>
+<div id="viewer"></div>
+<p class="error" id="errorBox"></p>
 <script src="js/app.js"></script>
 </body>
 </html>
